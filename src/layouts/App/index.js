@@ -9,7 +9,6 @@ import _ from '../../util/helper';
 
 import locale from 'antd/lib/locale/zh_TW';
 import 'antd/dist/antd.css';
-import '@ant-design/flowchart/dist/index.css';
 
 // import styles from './styles.module.scss';
 
