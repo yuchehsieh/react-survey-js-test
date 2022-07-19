@@ -19,7 +19,10 @@ const AppRoutes = () => {
         <Routes>
             <Route path={ROUTE_PATH.home} element={<HomePage />} />
             <Route path={ROUTE_PATH.page1} element={<Page1 />} />
-            <Route path={ROUTE_PATH.survey} element={<Survey />} />
+            <Route
+                path={`${ROUTE_PATH.survey}/:surveyName`}
+                element={<Survey />}
+            />
             <Route
                 path={`${ROUTE_PATH.page_with_params}/:id`}
                 element={<PageWithParams />}

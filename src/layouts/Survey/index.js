@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import 'survey-core/modern.min.css';
@@ -10,16 +11,31 @@ import styles from './styles.module.scss';
 
 StylesManager.applyTheme('modern');
 
-const surveyJson = {
+const sixSurveyJson = {
     elements: [
         {
-            name: 'FirstName',
+            name: 'firstName',
             title: 'Enter your first name:',
             type: 'text',
         },
         {
-            name: 'LastName',
+            name: 'lastName',
             title: 'Enter your last name:',
+            type: 'text',
+        },
+    ],
+};
+
+const survey2Json = {
+    elements: [
+        {
+            name: 'gender',
+            title: 'Select your gender',
+            type: 'text',
+        },
+        {
+            name: 'age',
+            title: 'Enter your age',
             type: 'text',
         },
     ],
@@ -27,27 +43,43 @@ const surveyJson = {
 
 const survey = () => {
     const navigate = useNavigate();
-    const survey = new Model(surveyJson);
+    const params = useParams();
+    const chooseSurveyJson = () => {
+        let surveyJson = {};
+        if (params.surveyName === '六分鐘呼吸測驗') {
+            surveyJson = sixSurveyJson;
+        }
+        if (params.surveyName === 'survey2') {
+            surveyJson = survey2Json;
+        }
+        return surveyJson;
+    };
+
+    const survey = new Model(chooseSurveyJson());
 
     survey.focusFirstQuestionAutomatic = false;
+    survey.completeText = '儲存並返回';
 
-    const alertResults = useCallback((sender) => {
-        const results = JSON.stringify(sender.data);
+    const alertResults = (sender) => {
+        const results = sender.data;
         console.log(results);
-    }, []);
+        goHome({
+            ...results,
+            surveyName: params.surveyName,
+            surveyCompleted: true,
+        });
+    };
 
     survey.onComplete.add(alertResults);
 
-    const goHome = () => {
-        navigate(`${ROUTE_PATH.home}`);
+    const goHome = (state) => {
+        navigate(ROUTE_PATH.home, { state: state });
     };
 
     return (
         <div className={styles.container}>
             <Header />
-            <p>This is survey page</p>
             <Survey model={survey} />
-            <button onClick={goHome}>Navigate to home</button>
         </div>
     );
 };

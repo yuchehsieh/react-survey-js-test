@@ -1,10 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { ConfigProvider } from 'antd';
 import { useStore } from '../../store';
 import { SET_AUTH } from '../../store/actions';
 // import moment from 'moment';
 import _ from '../../util/helper';
+
+import locale from 'antd/lib/locale/zh_TW';
+import 'antd/dist/antd.css';
+import '@ant-design/flowchart/dist/index.css';
 
 // import styles from './styles.module.scss';
 
@@ -49,7 +54,7 @@ const AppProvider = ({ children }) => {
         return null;
     }
 
-    return <div>{children}</div>;
+    return <ConfigProvider locale={locale}>{children}</ConfigProvider>;
 };
 
 export default AppProvider;
