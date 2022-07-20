@@ -13,6 +13,7 @@ import EditorProduct from '../layouts/EditorProduct';
 import Missing from '../layouts/Missing';
 import Unauthorized from '../layouts/Unauthorized';
 import Survey from '../layouts/Survey';
+import BarcodeReader from '../layouts/BarcodeReader';
 
 const AppRoutes = () => {
     return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
             <Route path={ROUTE_PATH.home} element={<HomePage />} />
             <Route path={ROUTE_PATH.page1} element={<Page1 />} />
             <Route path={ROUTE_PATH.survey} element={<Survey />} />
+            <Route path={ROUTE_PATH.barcode} element={<BarcodeReader />} />
             <Route
                 path={`${ROUTE_PATH.page_with_params}/:id`}
                 element={<PageWithParams />}

@@ -4,6 +4,7 @@ export default {
     page_with_params: '/params',
 
     survey: '/survey',
+    barcode: '/barcode',
 
     unauthorized: '/unauthorized',
 
