@@ -1,31 +1,36 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from 'antd';
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
-import 'survey-core/modern.min.css';
+// import 'survey-core/modern.min.css';
 
 import { ROUTE_PATH } from '../../constants';
 import Header from '../../components/Header';
 import styles from './styles.module.scss';
 
-StylesManager.applyTheme('modern');
+import SixSurveyJson from './sixSurvey.json';
+import 'survey-core/defaultV2.css';
+StylesManager.applyTheme('defaultV2');
 
-const sixSurveyJson = {
-    elements: [
-        {
-            name: 'firstName',
-            title: 'Enter your first name:',
-            type: 'text',
-        },
-        {
-            name: 'lastName',
-            title: 'Enter your last name:',
-            type: 'text',
-        },
-    ],
-};
+// const sixSurveyJson = {
+//     elements: [
+//         {
+//             name: 'firstName',
+//             title: 'Enter your first name:',
+//             type: 'text',
+//         },
+//         {
+//             name: 'lastName',
+//             title: 'Enter your last name:',
+//             type: 'text',
+//         },
+//     ],
+// };
+
+const sixSurveyJson = SixSurveyJson;
 
 const survey2Json = {
     elements: [
@@ -63,6 +68,9 @@ const survey = () => {
     // survey METHODS
     const saveResults = (sender) => {
         const results = sender.data;
+
+        console.log(sender);
+
         if (curSurveyName === '六分鐘呼吸測驗') {
             setSixSurveyData({ ...results, surveyCompleted: true });
         }
@@ -101,6 +109,10 @@ const survey = () => {
     };
 
     const onOKSurvey = async () => {
+        let error = survey.hasErrors();
+        if (error) {
+            return;
+        }
         survey.doComplete();
         setSurveyModalVisible(false);
     };
@@ -136,7 +148,7 @@ const survey = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} id="surveyContainer">
             <Header />
             <button onClick={() => openSurveyModal('六分鐘呼吸測驗')}>
                 進行 六分鐘呼吸測驗
@@ -145,6 +157,8 @@ const survey = () => {
                 進行 survey2
             </button>
             <Modal
+                width={'70vw'}
+                className="surveyModalStyle" // 如果要覆寫 style 要這樣做
                 title={curSurveyName}
                 visible={surveyModalVisible}
                 onOk={onOKSurvey}
@@ -152,7 +166,7 @@ const survey = () => {
                 destroyOnClose
                 okText="送出儲存"
             >
-                <Survey model={survey} />
+                <Survey id="surveyContainer" model={survey} />
             </Modal>
             {renderSixMinutesResult()}
             {renderSurvey2Result()}
