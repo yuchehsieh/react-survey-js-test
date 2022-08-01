@@ -12,25 +12,14 @@ import Header from '../../components/Header';
 import styles from './styles.module.scss';
 
 import SixSurveyJson from './sixSurvey.json';
+import COPDSurveyJson from './copdSurvey.json';
+import SGRSurveyJson from './sgrSurvey.json';
 import 'survey-core/defaultV2.css';
 StylesManager.applyTheme('defaultV2');
 
-// const sixSurveyJson = {
-//     elements: [
-//         {
-//             name: 'firstName',
-//             title: 'Enter your first name:',
-//             type: 'text',
-//         },
-//         {
-//             name: 'lastName',
-//             title: 'Enter your last name:',
-//             type: 'text',
-//         },
-//     ],
-// };
-
 const sixSurveyJson = SixSurveyJson;
+const copdSurveyJson = COPDSurveyJson;
+const sgrSurveyJson = SGRSurveyJson;
 
 const survey2Json = {
     elements: [
@@ -57,8 +46,13 @@ const survey = () => {
     const [survey, setSurvey] = useState(new Model(sixSurveyJson));
 
     // survey data
-    const [sixSurveyData, setSixSurveyData] = useState(false);
+    const [sixSurveyData, setSixSurveyData] = useState({ question3: '123' });
     const [survey2SurveyData, setSurvey2SurveyData] = useState(false);
+    const [copdSurveyData, setCopdSurveyData] = useState(false);
+    const [sgrSurveyData, setSGRSurveyData] = useState(false);
+    // 需要填上 患者ID 跟 日期的問卷:
+    // 從 呼叫端傳入，並且設成 initial state
+    // 記得把對應的欄位改為 readOnly: true
 
     // survey UI related!!
     survey.focusFirstQuestionAutomatic = false;
@@ -69,10 +63,16 @@ const survey = () => {
     const saveResults = (sender) => {
         const results = sender.data;
 
-        console.log(sender);
+        console.log(sender.data);
 
         if (curSurveyName === '六分鐘呼吸測驗') {
             setSixSurveyData({ ...results, surveyCompleted: true });
+        }
+        if (curSurveyName === 'copd') {
+            setCopdSurveyData({ ...results, surveyCompleted: true });
+        }
+        if (curSurveyName === 'sgr') {
+            setSGRSurveyData({ ...results, surveyCompleted: true });
         }
         if (curSurveyName === 'survey2') {
             setSurvey2SurveyData({ ...results, surveyCompleted: true });
@@ -92,6 +92,22 @@ const survey = () => {
             if (sixSurveyData) {
                 survey.data = sixSurveyData;
                 // survey.mode = 'display'; // 這個打開後，僅供檢視
+            }
+            setSurvey(survey);
+        }
+        if (surveyName === 'copd') {
+            let survey = new Model(copdSurveyJson);
+
+            if (copdSurveyData) {
+                survey.data = copdSurveyData;
+            }
+            setSurvey(survey);
+        }
+        if (surveyName === 'sgr') {
+            let survey = new Model(sgrSurveyJson);
+
+            if (sgrSurveyData) {
+                survey.data = sgrSurveyData;
             }
             setSurvey(survey);
         }
@@ -128,8 +144,29 @@ const survey = () => {
         return (
             <div>
                 已完成 六分鐘呼吸測驗
-                <p>FirstName: {sixSurveyData.firstName}</p>
-                <p>LastName: {sixSurveyData.lastName}</p>
+                <p>{JSON.stringify(sixSurveyData)}</p>
+            </div>
+        );
+    };
+    const renderCopdResult = () => {
+        if (!copdSurveyData?.surveyCompleted) {
+            return null;
+        }
+        return (
+            <div>
+                已完成 COPD 測驗
+                <p>{JSON.stringify(copdSurveyData)}</p>
+            </div>
+        );
+    };
+    const renderSgrResult = () => {
+        if (!sgrSurveyData?.surveyCompleted) {
+            return null;
+        }
+        return (
+            <div>
+                已完成 COPD 測驗
+                <p>{JSON.stringify(sgrSurveyData)}</p>
             </div>
         );
     };
@@ -153,13 +190,18 @@ const survey = () => {
             <button onClick={() => openSurveyModal('六分鐘呼吸測驗')}>
                 進行 六分鐘呼吸測驗
             </button>
+            <button onClick={() => openSurveyModal('copd')}>
+                進行 COPD 測驗
+            </button>
+            <button onClick={() => openSurveyModal('sgr')}>
+                進行 SGR 測驗
+            </button>
             <button onClick={() => openSurveyModal('survey2')}>
                 進行 survey2
             </button>
             <Modal
                 width={'70vw'}
                 className="surveyModalStyle" // 如果要覆寫 style 要這樣做
-                title={curSurveyName}
                 visible={surveyModalVisible}
                 onOk={onOKSurvey}
                 onCancel={onCancelSurvey}
@@ -169,6 +211,8 @@ const survey = () => {
                 <Survey id="surveyContainer" model={survey} />
             </Modal>
             {renderSixMinutesResult()}
+            {renderCopdResult()}
+            {renderSgrResult()}
             {renderSurvey2Result()}
         </div>
     );

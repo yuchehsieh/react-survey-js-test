@@ -1,4 +1,5 @@
 {
+    "title": "6-Minute Walk Test",
     "description": "The following elements should be present on the 6MWT worksheet and report:",
     "logoPosition": "right",
     "completedHtml": "<h3>Thank you for completing the survey!</h3><div style=\"margin: 32px 0;\"><button class=\"rounded-button rounded-button--small\" onclick=\"reRunSurvey();\">Run survey again</button></div>",
@@ -39,7 +40,8 @@
           "type": "text",
           "name": "question3",
           "title": "Patient ID",
-          "isRequired": true
+          "isRequired": true,
+          "readOnly": true
          }
         ]
        },

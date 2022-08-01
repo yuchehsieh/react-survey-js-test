@@ -1,0 +1,69 @@
+{
+    "title": "How is your COPD?",
+    "description": "The question will help you ",
+    "logoPosition": "right",
+    "pages": [
+        {
+            "name": "page1",
+            "elements": [
+                {
+                    "type": "rating",
+                    "name": "question1",
+                    "title": "Question1",
+                    "titleLocation": "hidden",
+                    "minRateDescription": "(I never cought)",
+                    "maxRateDescription": "(I cought all the time)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question2",
+                    "title": "Question2",
+                    "minRateDescription": "(I have no problem...)",
+                    "maxRateDescription": "(My chest is ...)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question3",
+                    "title": "Question3",
+                    "minRateDescription": "(My chest does not....)",
+                    "maxRateDescription": "(My chest feel very tight)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question4",
+                    "title": "Question4",
+                    "minRateDescription": "(When I walk up a hill..)",
+                    "maxRateDescription": "(When I walk up a hill...)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question5",
+                    "title": "Question5",
+                    "minRateDescription": "(I am not limit doing...)",
+                    "maxRateDescription": "(I am very limited doing..)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question6",
+                    "title": "Question6",
+                    "minRateDescription": "(I am confident leaving...)",
+                    "maxRateDescription": "(I am not at all confident)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question7",
+                    "title": "Question7",
+                    "minRateDescription": "(I sleep soundly)",
+                    "maxRateDescription": "(I don't sleep)"
+                },
+                {
+                    "type": "rating",
+                    "name": "question8",
+                    "title": "Question8",
+                    "minRateDescription": "(I have lots of energy)",
+                    "maxRateDescription": "(I have no energy at all)"
+                }
+            ]
+        }
+    ]
+}
