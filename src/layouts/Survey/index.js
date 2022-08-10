@@ -14,12 +14,14 @@ import styles from './styles.module.scss';
 import SixSurveyJson from './sixSurvey.json';
 import COPDSurveyJson from './copdSurvey.json';
 import SGRSurveyJson from './sgrSurvey.json';
+import BorgScaleSurveyJson from './borgScaleSurvey.json';
 import 'survey-core/defaultV2.css';
 StylesManager.applyTheme('defaultV2');
 
 const sixSurveyJson = SixSurveyJson;
 const copdSurveyJson = COPDSurveyJson;
 const sgrSurveyJson = SGRSurveyJson;
+const borgScaleSurveyJson = BorgScaleSurveyJson;
 
 const survey2Json = {
     elements: [
@@ -47,9 +49,12 @@ const survey = () => {
 
     // survey data
     const [sixSurveyData, setSixSurveyData] = useState({ question3: '123' });
-    const [survey2SurveyData, setSurvey2SurveyData] = useState(false);
+    const [survey2SurveyData, setSurvey2SurveyData] = useState(false); // EXAMPLE
     const [copdSurveyData, setCopdSurveyData] = useState(false);
     const [sgrSurveyData, setSGRSurveyData] = useState(false);
+    const [borgScaleSurveyData, setBorgScaleSurveyData] = useState({
+        question2: 'Zone3',
+    });
     // 需要填上 患者ID 跟 日期的問卷:
     // 從 呼叫端傳入，並且設成 initial state
     // 記得把對應的欄位改為 readOnly: true
@@ -73,6 +78,9 @@ const survey = () => {
         }
         if (curSurveyName === 'sgr') {
             setSGRSurveyData({ ...results, surveyCompleted: true });
+        }
+        if (curSurveyName === 'borgScale') {
+            setBorgScaleSurveyData({ ...results, surveyCompleted: true });
         }
         if (curSurveyName === 'survey2') {
             setSurvey2SurveyData({ ...results, surveyCompleted: true });
@@ -108,6 +116,14 @@ const survey = () => {
 
             if (sgrSurveyData) {
                 survey.data = sgrSurveyData;
+            }
+            setSurvey(survey);
+        }
+        if (surveyName === 'borgScale') {
+            let survey = new Model(borgScaleSurveyJson);
+
+            if (borgScaleSurveyData) {
+                survey.data = borgScaleSurveyData;
             }
             setSurvey(survey);
         }
@@ -170,6 +186,17 @@ const survey = () => {
             </div>
         );
     };
+    const renderBorgScaleResult = () => {
+        if (!borgScaleSurveyData?.surveyCompleted) {
+            return null;
+        }
+        return (
+            <div>
+                已完成 Borg Scale 測驗
+                <p>{JSON.stringify(borgScaleSurveyData)}</p>
+            </div>
+        );
+    };
     const renderSurvey2Result = () => {
         if (!survey2SurveyData?.surveyCompleted) {
             return null;
@@ -196,6 +223,9 @@ const survey = () => {
             <button onClick={() => openSurveyModal('sgr')}>
                 進行 SGR 測驗
             </button>
+            <button onClick={() => openSurveyModal('borgScale')}>
+                進行 Borg Scale 測驗
+            </button>
             <button onClick={() => openSurveyModal('survey2')}>
                 進行 survey2
             </button>
@@ -213,6 +243,7 @@ const survey = () => {
             {renderSixMinutesResult()}
             {renderCopdResult()}
             {renderSgrResult()}
+            {renderBorgScaleResult()}
             {renderSurvey2Result()}
         </div>
     );

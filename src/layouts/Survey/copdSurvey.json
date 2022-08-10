@@ -11,57 +11,64 @@
                     "name": "question1",
                     "title": "Question1",
                     "titleLocation": "hidden",
-                    "minRateDescription": "(I never cought)",
-                    "maxRateDescription": "(I cought all the time)"
+                    "minRateDescription": "I never cough",
+                    "maxRateDescription": "I cough all the time"
                 },
                 {
                     "type": "rating",
                     "name": "question2",
                     "title": "Question2",
-                    "minRateDescription": "(I have no problem...)",
-                    "maxRateDescription": "(My chest is ...)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "I have no phlegm (mucus) in my chest at all                      ",
+                    "maxRateDescription": "My chest is completely full of phlegm (mucus)"
                 },
                 {
                     "type": "rating",
                     "name": "question3",
                     "title": "Question3",
-                    "minRateDescription": "(My chest does not....)",
-                    "maxRateDescription": "(My chest feel very tight)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "My chest does not feel tight at all",
+                    "maxRateDescription": "My chest feels very tight"
                 },
                 {
                     "type": "rating",
                     "name": "question4",
                     "title": "Question4",
-                    "minRateDescription": "(When I walk up a hill..)",
-                    "maxRateDescription": "(When I walk up a hill...)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "When I walk up a hill or one flight of stairs I am not breathless",
+                    "maxRateDescription": "When I walk up a hill or one flight of stairs I am very breathless"
                 },
                 {
                     "type": "rating",
                     "name": "question5",
                     "title": "Question5",
-                    "minRateDescription": "(I am not limit doing...)",
-                    "maxRateDescription": "(I am very limited doing..)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "I am not limited doing any activities at home",
+                    "maxRateDescription": "I am very limited doing activities at home"
                 },
                 {
                     "type": "rating",
                     "name": "question6",
                     "title": "Question6",
-                    "minRateDescription": "(I am confident leaving...)",
-                    "maxRateDescription": "(I am not at all confident)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "I am confident leaving my home despite my lung condition",
+                    "maxRateDescription": "I am not at all confident leaving my home because of my lung condition"
                 },
                 {
                     "type": "rating",
                     "name": "question7",
                     "title": "Question7",
-                    "minRateDescription": "(I sleep soundly)",
-                    "maxRateDescription": "(I don't sleep)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "I sleep soundly",
+                    "maxRateDescription": "I don't sleep soundly because of my lung condition"
                 },
                 {
                     "type": "rating",
                     "name": "question8",
                     "title": "Question8",
-                    "minRateDescription": "(I have lots of energy)",
-                    "maxRateDescription": "(I have no energy at all)"
+                    "titleLocation": "hidden",
+                    "minRateDescription": "I have lots of energy",
+                    "maxRateDescription": "I have no energy at all"
                 }
             ]
         }
