@@ -7,6 +7,25 @@
 .surveyModalStyle .ant-modal-body {
   padding: 0;
 }
+
+.survey-input-disabled {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.survey-rating-selected {
+  color: rgba(255, 255, 255, 0.8) !important;
+  background-color: #19b394 !important;
+  border-color: #19b394 !important;
+}
+
+.survey-radiogroup-disable {
+  --foreground-disabled: rgba(0, 0, 0, 0.5);
+  // color: rgba(0, 0, 0, 0.5) !important;
+
+  // label {
+  //   color: rgba(0, 0, 0, 0.5) !important;
+  // }
+}
 /* 以上數行是用來覆寫預設的 style */
 
 *,
@@ -20,6 +39,9 @@
   font-stretch: normal;
   line-height: normal;
   outline: none;
+
+  --foreground-disabled: rgba(0, 0, 0, 0.5);
+  --border: rgba(0, 0, 0, 0.3);
 }
 
 body,

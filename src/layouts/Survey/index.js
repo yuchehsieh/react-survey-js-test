@@ -38,6 +38,18 @@ const survey2Json = {
     ],
 };
 
+const myCss = {
+    text: {
+        controlDisabled: 'survey-input-disabled',
+    },
+    rating: {
+        selected: 'survey-rating-selected',
+    },
+    // radiogroup: {
+    //     itemDisabled: 'survey-radiogroup-disable',
+    // },
+};
+
 const survey = () => {
     // const navigate = useNavigate();
     // const params = useParams();
@@ -51,7 +63,12 @@ const survey = () => {
     const [sixSurveyData, setSixSurveyData] = useState({ question3: '123' });
     const [survey2SurveyData, setSurvey2SurveyData] = useState(false); // EXAMPLE
     const [copdSurveyData, setCopdSurveyData] = useState(false);
-    const [sgrSurveyData, setSGRSurveyData] = useState(false);
+    const [sgrSurveyData, setSGRSurveyData] = useState({
+        question3: 'Good',
+        question5: 'item1',
+        question6: 'item1',
+        question14: { ['Row 1']: 'Column 2' },
+    });
     const [borgScaleSurveyData, setBorgScaleSurveyData] = useState({
         question2: 'Zone3',
     });
@@ -78,6 +95,7 @@ const survey = () => {
         }
         if (curSurveyName === 'sgr') {
             setSGRSurveyData({ ...results, surveyCompleted: true });
+            console.log(results);
         }
         if (curSurveyName === 'borgScale') {
             setBorgScaleSurveyData({ ...results, surveyCompleted: true });
@@ -238,7 +256,7 @@ const survey = () => {
                 destroyOnClose
                 okText="送出儲存"
             >
-                <Survey id="surveyContainer" model={survey} />
+                <Survey id="surveyContainer" model={survey} css={myCss} />
             </Modal>
             {renderSixMinutesResult()}
             {renderCopdResult()}

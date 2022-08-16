@@ -50,7 +50,9 @@
                                 "Fair",
                                 "Poor",
                                 "Very Poor"
-                            ]
+                            ],
+                            "isRequired": true,
+                            "readOnly": true
                         }
                     ]
                 },
@@ -85,7 +87,9 @@
                                     "value": "item4",
                                     "text": "Not at all"
                                 }
-                            ]
+                            ],
+                            "isRequired": true,
+                            "readOnly": true
                         },
                         {
                             "type": "radiogroup",
@@ -108,7 +112,9 @@
                                     "value": "item4",
                                     "text": "Not at all"
                                 }
-                            ]
+                            ],
+                            "isRequired": true,
+                            "readOnly": true
                         },
                         {
                             "type": "radiogroup",
@@ -279,7 +285,9 @@
                                     "value": "Row 5",
                                     "text": "Walking up hills"
                                 }
-                            ]
+                            ],
+                            "isRequired": true,
+                            "readOnly": true
                         },
                         {
                             "type": "matrix",
